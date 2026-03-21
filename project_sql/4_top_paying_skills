@@ -1,0 +1,236 @@
+
+
+SELECT
+    Skills_dim.skills,
+    Round(AVG(salary_year_avg), 0) AS Avg_salary
+FROM
+    job_postings_fact
+    JOIN skills_job_dim
+        ON job_postings_fact.job_id = skills_job_dim.job_id
+    JOIN skills_dim
+        ON skills_job_dim.skill_id = skills_dim.skill_id
+WHERE
+    job_title_short LIKE '%Data Analyst%'
+    -- AND job_work_from_home = 'TRUE'
+    AND salary_year_avg IS NOT NULL
+GROUP BY
+    Skills_dim.skills
+ORDER BY
+    Avg_salary DESC
+LIMIT 50;
+
+/*
+
+Here are the three key takeaways:
+
+- **Outliers skew the top.** SVN ($400K), VMware ($261K), and Yarn ($220K) reflect one-off high-salary postings, not real market premiums — the meaningful premium tier starts around $120K–$165K with skills like Golang, Couchbase, and MXNet.
+
+- **AI/ML and Big Data are the real salary drivers.** Tools like PyTorch, Kafka, Airflow, and Spark consistently cluster in the $120K–$130K range, signaling that analysts who can work with ML models and data pipelines command a reliable premium over pure SQL/BI analysts.
+
+- **The salary floor has risen.** Every skill in this top-50 list pays above $112K — even "baseline" tools like Snowflake, Hadoop, and PostgreSQL — suggesting that specializing beyond standard tools now carries a strong, consistent wage bump regardless of which direction you go.
+
+
+[
+  {
+    "skills": "svn",
+    "avg_salary": "400000"
+  },
+  {
+    "skills": "vmware",
+    "avg_salary": "261250"
+  },
+  {
+    "skills": "yarn",
+    "avg_salary": "219575"
+  },
+  {
+    "skills": "fastapi",
+    "avg_salary": "185000"
+  },
+  {
+    "skills": "solidity",
+    "avg_salary": "179000"
+  },
+  {
+    "skills": "golang",
+    "avg_salary": "162833"
+  },
+  {
+    "skills": "couchbase",
+    "avg_salary": "160515"
+  },
+  {
+    "skills": "mxnet",
+    "avg_salary": "149000"
+  },
+  {
+    "skills": "dplyr",
+    "avg_salary": "147633"
+  },
+  {
+    "skills": "twilio",
+    "avg_salary": "138500"
+  },
+  {
+    "skills": "gitlab",
+    "avg_salary": "134709"
+  },
+  {
+    "skills": "perl",
+    "avg_salary": "133929"
+  },
+  {
+    "skills": "puppet",
+    "avg_salary": "129820"
+  },
+  {
+    "skills": "datarobot",
+    "avg_salary": "128993"
+  },
+  {
+    "skills": "kafka",
+    "avg_salary": "128983"
+  },
+  {
+    "skills": "terraform",
+    "avg_salary": "127940"
+  },
+  {
+    "skills": "pytorch",
+    "avg_salary": "124956"
+  },
+  {
+    "skills": "nltk",
+    "avg_salary": "124875"
+  },
+  {
+    "skills": "hugging face",
+    "avg_salary": "123950"
+  },
+  {
+    "skills": "keras",
+    "avg_salary": "123897"
+  },
+  {
+    "skills": "tensorflow",
+    "avg_salary": "122242"
+  },
+  {
+    "skills": "rust",
+    "avg_salary": "122040"
+  },
+  {
+    "skills": "airflow",
+    "avg_salary": "121658"
+  },
+  {
+    "skills": "atlassian",
+    "avg_salary": "118916"
+  },
+  {
+    "skills": "cassandra",
+    "avg_salary": "118309"
+  },
+  {
+    "skills": "notion",
+    "avg_salary": "118092"
+  },
+  {
+    "skills": "scala",
+    "avg_salary": "117328"
+  },
+  {
+    "skills": "spark",
+    "avg_salary": "116744"
+  },
+  {
+    "skills": "bitbucket",
+    "avg_salary": "116712"
+  },
+  {
+    "skills": "swift",
+    "avg_salary": "116625"
+  },
+  {
+    "skills": "rshiny",
+    "avg_salary": "116139"
+  },
+  {
+    "skills": "php",
+    "avg_salary": "115942"
+  },
+  {
+    "skills": "ansible",
+    "avg_salary": "115913"
+  },
+  {
+    "skills": "no-sql",
+    "avg_salary": "115633"
+  },
+  {
+    "skills": "mongodb",
+    "avg_salary": "115587"
+  },
+  {
+    "skills": "confluence",
+    "avg_salary": "115296"
+  },
+  {
+    "skills": "databricks",
+    "avg_salary": "114910"
+  },
+  {
+    "skills": "unity",
+    "avg_salary": "114760"
+  },
+  {
+    "skills": "pyspark",
+    "avg_salary": "114674"
+  },
+  {
+    "skills": "linux",
+    "avg_salary": "114018"
+  },
+  {
+    "skills": "pandas",
+    "avg_salary": "113705"
+  },
+  {
+    "skills": "splunk",
+    "avg_salary": "113509"
+  },
+  {
+    "skills": "aurora",
+    "avg_salary": "113394"
+  },
+  {
+    "skills": "gcp",
+    "avg_salary": "113367"
+  },
+  {
+    "skills": "phoenix",
+    "avg_salary": "113143"
+  },
+  {
+    "skills": "postgresql",
+    "avg_salary": "113106"
+  },
+  {
+    "skills": "neo4j",
+    "avg_salary": "112981"
+  },
+  {
+    "skills": "hadoop",
+    "avg_salary": "112946"
+  },
+  {
+    "skills": "snowflake",
+    "avg_salary": "112876"
+  },
+  {
+    "skills": "git",
+    "avg_salary": "112654"
+  }
+]
+
+*/
