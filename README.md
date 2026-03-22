@@ -62,12 +62,57 @@ LIMIT 10;
 ```
 [Top paying roles](project_sql/Assets.png)
 
+*This graph showingthe salary for the top 10 salaries for data analyst. ChatGPT generated this from my query*
+
+
 ### Query 2: Skills Required for Top-Paying Jobs
 Combines the top 10 highest-paying positions with their required skills. Key findings:
 - **SQL** appears in 100% of top-paying roles (non-negotiable)
 - **Python** is essential in 89% of top positions
 - **Tableau** is the dominant visualization tool (67% of postings)
 - **R** appears in senior/principal roles earning $195K+
+
+/*
+Question: What skills are required for the top-paying data analyst jobs?
+- Use the top 10 highest-paying Data Analyst jobs from first query
+- Add the specific skills required for these roles
+- Why? It provides a detailed look at which high-paying jobs demand certain skills,
+  helping job seekers understand which skills to develop that align with top salaries
+*/
+
+```
+WITH top_paying_jobs AS (
+    SELECT
+        job_postings_fact.job_id,
+        company_dim.name AS company_name,
+        job_postings_fact.job_title,
+        job_postings_fact.salary_year_avg,
+        job_postings_fact.job_posted_date
+    FROM
+        job_postings_fact
+        LEFT JOIN company_dim
+        ON job_postings_fact.company_id = company_dim.company_id
+    WHERE
+        job_title LIKE '%Data Analyst%' AND
+        job_location = 'Anywhere'  AND
+        salary_year_avg IS NOT NULL
+    ORDER BY
+        salary_year_avg DESC
+    LIMIT 10
+)
+SELECT
+    top_paying_jobs.*,
+    skills_dim.skills
+FROM
+    top_paying_jobs
+    JOIN skills_job_dim
+        ON top_paying_jobs.job_id = skills_job_dim.job_id
+        JOIN skills_dim
+    ON skills_job_dim.skill_id = skills_dim.skill_id
+ORDER BY
+    salary_year_avg DESC;
+   ```
+
 
 ### Query 3: Most In-Demand Skills
 Analyzes all remote data analyst job postings to identify the top 5 skills with the highest demand. This provides insights into which skills are most sought-after by employers.
