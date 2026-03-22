@@ -60,7 +60,7 @@ ORDER BY
     salary_year_avg DESC
 LIMIT 10;
 ```
-[Top paying roles](project_sql/Assets.png)
+[Top paying roles]()
 
 *This graph showingthe salary for the top 10 salaries for data analyst. ChatGPT generated this from my query*
 
