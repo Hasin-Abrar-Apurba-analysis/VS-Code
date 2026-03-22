@@ -60,7 +60,7 @@ ORDER BY
     salary_year_avg DESC
 LIMIT 10;
 ```
-[Top paying roles]()
+[Top paying roles](project_sql/1_Assets.png)
 
 *This graph showingthe salary for the top 10 salaries for data analyst. ChatGPT generated this from my query*
 
@@ -112,10 +112,18 @@ FROM
 ORDER BY
     salary_year_avg DESC;
    ```
-
+[Top demanding skill](project_sql/2_assets.png)
 
 ### Query 3: Most In-Demand Skills
 Analyzes all remote data analyst job postings to identify the top 5 skills with the highest demand. This provides insights into which skills are most sought-after by employers.
+
+| Skills | Demand Count |
+|--------|-------------|
+| SQL | 9,015 |
+| Python | 5,384 |
+| Excel | 5,311 |
+| Tableau | 4,744 |
+| Power BI | 3,070 |
 
 ### Query 4: Top-Paying Skills
 Analyzes the average salary associated with each skill for Data Analyst positions, regardless of location. This reveals how different skills directly impact earning potential and identifies the most financially rewarding skills to acquire.

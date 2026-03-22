@@ -27,7 +27,7 @@ GROUP BY
     Skills_dim.skills
 ORDER BY
     Avg_salary DESC
-LIMIT 50;
+LIMIT 25;
 
 /*
 
