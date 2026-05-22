@@ -112,7 +112,7 @@ FROM
 ORDER BY
     salary_year_avg DESC;
    ```
-[Top demanding skill](project_sql/2_assets.png)
+![Top demanding skill](2_assets.png)
 
 ### Query 3: Most In-Demand Skills
 Analyzes all remote data analyst job postings to identify the top 5 skills with the highest demand. This provides insights into which skills are most sought-after by employers.
